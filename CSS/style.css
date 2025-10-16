@@ -1,0 +1,29 @@
+*{margin: 0 ;
+}
+
+h1,h2,.displayPoints,#statusMatch{
+    text-align: center;
+}
+
+
+.boxCards{
+    display: flex;
+    justify-content: center;
+}
+
+.boxCards img{
+    width: 90px;
+    margin: 10px 10px;
+}
+
+.buttonsDiv{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+
+}
+
+.buttonsDiv button{
+    margin: 0 20px;
+}
