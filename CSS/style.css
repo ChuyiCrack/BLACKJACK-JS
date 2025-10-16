@@ -1,29 +1,134 @@
-*{margin: 0 ;
+/* Reset some defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0B3D91; /* Dark table background */
+    color: #fff;
 }
 
-h1,h2,.displayPoints,#statusMatch{
+/* Center headings and points */
+h1, h2, .displayPoints, #statusMatch {
     text-align: center;
+    margin: 10px 0;
 }
 
-
-.boxCards{
+/* Style the card boxes */
+.boxCards {
     display: flex;
     justify-content: center;
+    margin: 10px 0;
 }
 
-.boxCards img{
+.boxCards img {
     width: 90px;
-    margin: 10px 10px;
+    margin: 0 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s;
 }
 
-.buttonsDiv{
-    margin-top: 20px;
+.boxCards img:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Buttons container */
+.buttonsDiv {
     display: flex;
     justify-content: center;
-    justify-content: center;
-
+    gap: 20px; /* more consistent spacing between buttons */
+    margin: 20px 0;
 }
 
-.buttonsDiv button{
-    margin: 0 20px;
+/* Style buttons */
+.buttonsDiv button {
+    padding: 10px 0;
+    width: 120px; /* same width for all buttons */
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
+
+.buttonsDiv button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Status message styling */
+#statusMatch {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Display points styling */
+.displayPoints {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+/* Status message styling */
+/* Status message styling - glowing text only */
+#statusMatch {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffcc00; /* Text color */
+    text-shadow: 
+        0 0 5px #ffcc00,
+        0 0 10px #ffcc00,
+        0 0 15px #ff9900,
+        0 0 20px #ff9900;
+    animation: textGlow 1.5s infinite alternate;
+    background: transparent; /* No background glow */
+}
+
+/* Glowing text animation */
+@keyframes textGlow {
+    from {
+        text-shadow:
+            0 0 5px #ffcc00,
+            0 0 10px #ffcc00,
+            0 0 15px #ff9900,
+            0 0 20px #ff9900;
+    }
+    to {
+        text-shadow:
+            0 0 10px #ffcc00,
+            0 0 20px #ffcc00,
+            0 0 25px #ff9900,
+            0 0 40px #ff9900;
+    }
+}
+
+
+/* Restart button styling */
+#restartButton {
+    background: linear-gradient(45deg, #28a745, #218838); /* Green gradient */
+    color: #fff;
+    padding: 10px 0;
+    width: 120px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+}
+
+#restartButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+}
+

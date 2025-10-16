@@ -10,17 +10,23 @@ const statusMatch = document.getElementById("statusMatch")
 
 const hitButton = document.getElementById("hitButton")
 const standButton = document.getElementById("standButtton")
+const restartButton = document.getElementById("restartButton")
 
+let gameEnded = false
 
-var dealerPoints = 0
-var acesDealer = 0
+let dealerPoints = 0
+let acesDealer = 0
 
-var userPoints = 0
-var acesUser = 0
+let userPoints = 0
+let acesUser = 0
 
 let deck
 
 let hiddenDealerCard = ""
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function buildDeck(){
     deck = []
@@ -122,6 +128,8 @@ function giveCardsDealer(card){
 }
 
 function inittializeGame(){
+    restartButton.style.display = "none"
+    
     let randomCard
     //Give user two ranndom cards
     for(let i = 0 ; i< 2 ;i++){
@@ -148,7 +156,8 @@ function unrevealHiddenCardDealer(){
 }
 
 function hitFunc(){
-    if(userPoints > 21){
+    if(userPoints > 21 || gameEnded){
+        gameEnded = true
         return
     }
     randomCard = deck.pop()
@@ -156,20 +165,22 @@ function hitFunc(){
     if(userPoints > 21){
         statusMatch.innerText = "BUSTED"
         unrevealHiddenCardDealer()
+        restartButton.style.display = "inline"
         return
     }
 }
 
-function  standFunnc(){
+async function standFunnc(){
     if(userPoints > 21){
         return
     }
-    
+    await sleep(300);
     unrevealHiddenCardDealer()
-    
+    await sleep(1000);
     while(userPoints > dealerPoints && dealerPoints < 21){
         randomCard = deck.pop()
         giveCardsDealer(randomCard)
+        await sleep(700);
     }
     
     if(userPoints == dealerPoints){
@@ -183,18 +194,22 @@ function  standFunnc(){
     else{
         statusMatch.innerText = "You WON"
     }
-    
-    
+    gameEnded = true
+    restartButton.style.display = "inline"
 }
+
 
 hitButton.addEventListener("click" , hitFunc)
 standButton.addEventListener("click" , standFunnc)
+restartButton.addEventListener("click" , () => {
+    location.reload(); // Reloads the current page
+});
 
 buildDeck()
 shuffle(deck)
-
 inittializeGame()
-console.log(hiddenDealerCard)
+
+
 
 
 
